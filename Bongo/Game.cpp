@@ -82,6 +82,7 @@ void Game::handleInput()
 	}
 
 	this->player->move(currentDirection, this->deltaTime);
+	this->player->aimAtMouse(sf::Mouse::getPosition(*this->window));
 
 }
 

@@ -11,6 +11,8 @@ void Player::init()
 {
 	this->loadTextures();
 
+	
+	this->playerSprite.setOrigin(this->playerSprite.getLocalBounds().width / 2, this->playerSprite.getLocalBounds().height / 2);
 	this->position = sf::Vector2f(0.0f, 0.0f);
 	this->movementSpeed = 50.0f;
 }
@@ -33,7 +35,6 @@ void Player::move(sf::Vector2f direction, sf::Time dt)
 	direction = Utility::normalizeVector(direction);
 
 	this->playerSprite.move( (direction * this->movementSpeed) * dt.asSeconds());
-	std::cout << direction.x << "," << direction.y << std::endl;
 
 }
 
@@ -51,3 +52,14 @@ bool Player::loadTextures()
 	this->playerSprite.setTexture(this->playerTexture);
 	return true;
 }
+
+void Player::aimAtMouse(sf::Vector2i mousePosition)
+{
+	float dx = mousePosition.x - this->playerSprite.getPosition().x;
+	float dy = mousePosition.y - this->playerSprite.getPosition().y;
+	float rotation = std::atan2(dy, dx) * 180 / 3.14159f;
+
+	this->playerSprite.setRotation(rotation);
+
+}
+
