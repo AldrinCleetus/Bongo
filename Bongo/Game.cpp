@@ -19,9 +19,34 @@ void Game::init()
 	this->window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Game", sf::Style::Default | sf::Style::Close);
 	this->window->setFramerateLimit(60);
 	this->window->setVerticalSyncEnabled(false);
+
+	this->loadPlayer();
+	
 }
 
 void Game::update()
+{
+	this->handleWindowEvents();
+	this->handleInput();
+	this->player->update();
+}
+
+void Game::render()
+{
+	// Clear Screen
+	this->window->clear();
+
+	// Update screen
+	this->player->render(*this->window);
+
+	// Render
+	this->window->display();
+
+
+
+}
+
+void Game::handleWindowEvents()
 {
 	sf::Event e;
 	while (this->window->pollEvent(e)) {
@@ -31,18 +56,20 @@ void Game::update()
 	}
 }
 
-void Game::render()
+void Game::handleInput()
 {
-	// Clear Screen
-	this->window->clear();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		
+	}
+}
 
-	// Update screen
+void Game::handleGameState()
+{
+	// do later
+}
 
-
-	// Render
-	this->window->display();
-
-
-
+void Game::loadPlayer()
+{
+	this->player = new Player();
 }
 
