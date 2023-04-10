@@ -10,6 +10,9 @@ private:
 	sf::RenderWindow* window;
 	Player* player;
 
+	sf::Clock deltaClock;
+	sf::Time deltaTime;
+
 
 public:
 	Game();

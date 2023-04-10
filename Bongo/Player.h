@@ -12,13 +12,15 @@ public:
 	sf::Vector2f position;
 	sf::Vector2f direction;
 
+	float movementSpeed;
+
 public:
 	Player();
 
 	void init();
 	void render(sf::RenderTarget& target);
 	void update();
-	void move();
+	void move(sf::Vector2f direction, sf::Time dt);
 	void shoot();
 
 

@@ -1,4 +1,5 @@
-#include "Player.h"
+#include "player.h"
+#include "utility_functions.h"
 #include <iostream>
 
 Player::Player()
@@ -9,7 +10,9 @@ Player::Player()
 void Player::init()
 {
 	this->loadTextures();
+
 	this->position = sf::Vector2f(0.0f, 0.0f);
+	this->movementSpeed = 50.0f;
 }
 
 void Player::render(sf::RenderTarget& target)
@@ -20,11 +23,18 @@ void Player::render(sf::RenderTarget& target)
 
 void Player::update()
 {
-	this->playerSprite.setPosition(this->position);
+	//this->playerSprite.setPosition(this->position);
+
 }
 
-void Player::move()
+void Player::move(sf::Vector2f direction, sf::Time dt)
 {
+
+	direction = Utility::normalizeVector(direction);
+
+	this->playerSprite.move( (direction * this->movementSpeed) * dt.asSeconds());
+	std::cout << direction.x << "," << direction.y << std::endl;
+
 }
 
 void Player::shoot()
