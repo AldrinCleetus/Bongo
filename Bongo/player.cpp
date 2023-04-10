@@ -33,7 +33,6 @@ void Player::move(sf::Vector2f direction, sf::Time dt)
 {
 
 	direction = Utility::normalizeVector(direction);
-
 	this->playerSprite.move( (direction * this->movementSpeed) * dt.asSeconds());
 
 }
