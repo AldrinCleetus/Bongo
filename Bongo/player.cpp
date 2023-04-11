@@ -5,26 +5,35 @@
 Player::Player()
 {
 	this->init();
+
+	this->colliderSize = sf::Vector2f(this->playerSprite.getLocalBounds().width, this->playerSprite.getLocalBounds().height);
+	this->playerCollider = new Collider(colliderSize);
+}
+
+Player::~Player()
+{
+	delete this->playerCollider;
 }
 
 void Player::init()
 {
 	this->loadTextures();
 
-	
-	this->playerSprite.setOrigin(this->playerSprite.getLocalBounds().width / 2, this->playerSprite.getLocalBounds().height / 2);
 	this->position = sf::Vector2f(0.0f, 0.0f);
-	this->movementSpeed = 50.0f;
+	this->movementSpeed = 100.0f;
+	
 }
 
 void Player::render(sf::RenderTarget& target)
 {
 	target.draw(this->playerSprite);
+	this->playerCollider->render(target); // Debug Purposes
 }
 
 
 void Player::update()
 {
+	this->playerCollider->update(this->playerSprite.getPosition());
 	//this->playerSprite.setPosition(this->position);
 
 }
@@ -48,7 +57,10 @@ bool Player::loadTextures()
 		return false;
 	}
 
+	// Set Player Texture and Set its origin to middle
 	this->playerSprite.setTexture(this->playerTexture);
+	this->playerSprite.setOrigin(this->playerSprite.getLocalBounds().width / 2, this->playerSprite.getLocalBounds().height / 2);
+	
 	return true;
 }
 

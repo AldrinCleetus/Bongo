@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "test_object.h"
 
 Game::Game()
 {
@@ -14,6 +15,12 @@ void Game::run()
 
 		this->deltaTime = this->deltaClock.restart();
 	}
+}
+
+Game::~Game()
+{
+	delete this->player;
+	delete this->window;
 }
 
 void Game::init()
@@ -42,7 +49,10 @@ void Game::render()
 
 	// Update screen
 	this->player->render(*this->window);
-
+	
+	//Test_object test;
+	//test.render(*this->window);
+	// 
 	// Render
 	this->window->display();
 

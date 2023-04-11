@@ -1,5 +1,5 @@
 #pragma once
-
+#include "collider.h"
 #include <SFML/Graphics.hpp>
 
 class Player
@@ -11,11 +11,16 @@ private:
 public:
 	sf::Vector2f position;
 	sf::Vector2f direction;
+	
+
+	Collider* playerCollider;
+	sf::Vector2f colliderSize; // Fix later
 
 	float movementSpeed;
 
 public:
 	Player();
+	~Player();
 
 	void init();
 	void render(sf::RenderTarget& target);
