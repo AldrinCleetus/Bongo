@@ -1,9 +1,12 @@
 #include "Game.h"
-#include "test_object.h"
+#include <iostream>
 
 Game::Game()
 {
 	this->init();
+
+	// remove later
+	this->testsObjects.push_back(Test_object());
 }
 
 void Game::run()
@@ -27,7 +30,7 @@ void Game::init()
 {
 	// Setup the window
 	this->window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Game", sf::Style::Default | sf::Style::Close);
-	//this->window->setFramerateLimit(60);
+	this->window->setFramerateLimit(60);
 	//this->window->setVerticalSyncEnabled(false);
 
 	// Load in the player
@@ -39,7 +42,24 @@ void Game::update()
 {
 	this->handleWindowEvents();
 	this->handleInput();
+
 	this->player->update();
+
+	
+	/*if (this->player->playerCollider->isColliding(*this->testsObjects[0].myCollider)) {
+		std::cout << "Collided" << std::endl;
+		
+	}*/
+
+	if (this->player->playerCollider->isColliding(this->testsObjects[0].shape)) {
+		std::cout << "Collided" << std::endl;
+		this->player->playerCollider->collisionResponse(this->testsObjects[0].shape);
+		std::cout << this->player->playerCollider->collisionResponseMoveAmount.x << "," << this->player->playerCollider->collisionResponseMoveAmount.y << std::endl;
+	}
+	
+	
+
+	
 }
 
 void Game::render()
@@ -50,9 +70,8 @@ void Game::render()
 	// Update screen
 	this->player->render(*this->window);
 	
-	//Test_object test;
-	//test.render(*this->window);
-	// 
+	this->testsObjects[0].render(*this->window);
+
 	// Render
 	this->window->display();
 

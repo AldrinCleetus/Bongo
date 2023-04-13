@@ -28,6 +28,8 @@ public:
 	void move(sf::Vector2f direction, sf::Time dt);
 	void shoot();
 
+	float getDirection();
+
 	void aimAtMouse(sf::Vector2i mousePosition);
 
 

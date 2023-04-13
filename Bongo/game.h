@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "test_object.h"
+#include <vector>
 
 class Game
 {
@@ -9,6 +11,8 @@ private:
 	
 	sf::RenderWindow* window;
 	Player* player;
+
+	std::vector<Test_object> testsObjects;
 
 	sf::Clock deltaClock;
 	sf::Time deltaTime;

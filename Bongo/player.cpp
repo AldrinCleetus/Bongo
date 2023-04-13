@@ -7,7 +7,7 @@ Player::Player()
 	this->init();
 
 	this->colliderSize = sf::Vector2f(this->playerSprite.getLocalBounds().width, this->playerSprite.getLocalBounds().height);
-	this->playerCollider = new Collider(colliderSize);
+	this->playerCollider = new Collider(colliderSize,this->playerSprite.getPosition());
 }
 
 Player::~Player()
@@ -32,9 +32,12 @@ void Player::render(sf::RenderTarget& target)
 
 
 void Player::update()
-{
+{	
+	if (this->playerCollider->collision) {
+		this->playerSprite.move(this->playerCollider->collisionResponseMoveAmount);
+	}
+
 	this->playerCollider->update(this->playerSprite.getPosition());
-	//this->playerSprite.setPosition(this->position);
 
 }
 
@@ -72,5 +75,10 @@ void Player::aimAtMouse(sf::Vector2i mousePosition)
 
 	this->playerSprite.setRotation(rotation);
 
+}
+
+float Player::getDirection()
+{
+	return this->playerSprite.getRotation();
 }
 
