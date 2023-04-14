@@ -71,9 +71,11 @@ sf::Vector2f Collider::collisionResponse(sf::RectangleShape& collidingObject)
         float dx = 0.0f;
         float dy = 0.0f;
 
+        std::cout << this->collisionIntersection.width << "," << this->collisionIntersection.height << "\n";
+
         // Dont understand how this works.
         if (this->collisionIntersection.width < this->collisionIntersection.height) {
-            std::cout << "left/Right" << "\n";
+            
             if (currentObject.left < collisionObject.left) {
                 dx = -this->collisionIntersection.width;
             }
@@ -84,7 +86,6 @@ sf::Vector2f Collider::collisionResponse(sf::RectangleShape& collidingObject)
             this->collisionResponseMoveAmount = sf::Vector2f(dx, 0);
         }
         else {
-            std::cout << "Top/Bottom" << "\n";
             if (currentObject.top < collisionObject.top) {
                 dy = -this->collisionIntersection.height;
             }

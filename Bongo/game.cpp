@@ -51,11 +51,11 @@ void Game::update()
 		
 	}*/
 
-	if (this->player->playerCollider->isColliding(this->testsObjects[0].shape)) {
-		std::cout << "Collided" << std::endl;
-		this->player->playerCollider->collisionResponse(this->testsObjects[0].shape);
-		std::cout << this->player->playerCollider->collisionResponseMoveAmount.x << "," << this->player->playerCollider->collisionResponseMoveAmount.y << std::endl;
-	}
+	//if (this->player->playerCollider->isColliding(this->testsObjects[0].shape)) {
+	//	//std::cout << "Collided" << std::endl;
+	//	this->player->playerCollider->collisionResponse(this->testsObjects[0].shape);
+	//	//std::cout << this->player->playerCollider->collisionResponseMoveAmount.x << "," << this->player->playerCollider->collisionResponseMoveAmount.y << std::endl;
+	//}
 	
 	
 

@@ -13,6 +13,7 @@ private:
 	Player* player;
 
 	std::vector<Test_object> testsObjects;
+	
 
 	sf::Clock deltaClock;
 	sf::Time deltaTime;
