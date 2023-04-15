@@ -21,7 +21,7 @@ public:
 	bool isColliding(Collider& collidingObject);
 	bool isColliding(sf::RectangleShape& collidingObject);
 
-	sf::Vector2f collisionResponse(sf::RectangleShape& collidingObject);
+	sf::Vector2f collisionResponse(Collider& collidingObject);
 
 
 

@@ -60,10 +60,10 @@ bool Collider::isColliding(sf::RectangleShape& collidingObject)
     return false;
 }
 
-sf::Vector2f Collider::collisionResponse(sf::RectangleShape& collidingObject)
+sf::Vector2f Collider::collisionResponse(Collider& collidingObject)
 {
     sf::FloatRect currentObject = this->collider.getGlobalBounds();
-    sf::FloatRect collisionObject = collidingObject.getGlobalBounds();
+    sf::FloatRect collisionObject = collidingObject.collider.getGlobalBounds();
 
 
     if (currentObject.intersects(collisionObject,this->collisionIntersection)) {
@@ -73,7 +73,6 @@ sf::Vector2f Collider::collisionResponse(sf::RectangleShape& collidingObject)
 
         std::cout << this->collisionIntersection.width << "," << this->collisionIntersection.height << "\n";
 
-        // Dont understand how this works.
         if (this->collisionIntersection.width < this->collisionIntersection.height) {
             
             if (currentObject.left < collisionObject.left) {
