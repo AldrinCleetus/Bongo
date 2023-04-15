@@ -33,9 +33,9 @@ void Player::render(sf::RenderTarget& target)
 
 void Player::update()
 {	
-	if (this->playerCollider->collision) {
+	/*if (this->playerCollider->collision) {
 		this->playerSprite.move(this->playerCollider->collisionResponseMoveAmount);
-	}
+	}*/
 
 	this->playerCollider->update(this->playerSprite.getPosition());
 
@@ -47,16 +47,19 @@ void Player::move(sf::Vector2f direction, sf::Time dt)
 	// Collision Handling
 	for (auto tile : *this->levelTiles) {
 		if (this->playerCollider->isColliding(*tile->tileCollider)) {
-			std::cout << "Collided with " << tile->id << "\n";
+			
 			this->playerCollider->collisionResponse(*tile->tileCollider);
-			this->playerSprite.move(this->playerCollider->collisionResponseMoveAmount);
+
+			if (tile->canMove) {
+				tile->move(-this->playerCollider->collisionResponseMoveAmount);
+			}
+			else {
+				this->playerSprite.move(this->playerCollider->collisionResponseMoveAmount);
+			}
+			
 		}
+		
 	}
-
-
-
-
-
 
 	direction = Utility::normalizeVector(direction);
 	this->playerSprite.move( (direction * this->movementSpeed) * dt.asSeconds());

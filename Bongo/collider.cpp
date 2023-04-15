@@ -71,7 +71,7 @@ sf::Vector2f Collider::collisionResponse(Collider& collidingObject)
         float dx = 0.0f;
         float dy = 0.0f;
 
-        std::cout << this->collisionIntersection.width << "," << this->collisionIntersection.height << "\n";
+        /*std::cout << this->collisionIntersection.width << "," << this->collisionIntersection.height << "\n";*/
 
         if (this->collisionIntersection.width < this->collisionIntersection.height) {
             

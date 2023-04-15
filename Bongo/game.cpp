@@ -11,9 +11,15 @@ Game::Game()
 	this->init();
 	
 	this->tiles.push_back(new Tile(0, false, TestLocation, sf::Vector2f(512.0f, 500.0f), sf::Vector2f(1.0f, 1.0f)));
-	this->tiles.push_back(new Tile(1, false, TestLocation, sf::Vector2f(300.0f, 500.0f), sf::Vector2f(1.0f, 1.0f)));
-	this->tiles.push_back(new Tile(2, false, TestLocation, sf::Vector2f(100.0f, 500.0f), sf::Vector2f(1.0f, 1.0f)));
+	this->tiles.push_back(new Tile(1, true, TestLocation, sf::Vector2f(300.0f, 500.0f), sf::Vector2f(1.0f, 1.0f)));
+	this->tiles.push_back(new Tile(2, true, TestLocation, sf::Vector2f(100.0f, 500.0f), sf::Vector2f(1.0f, 1.0f)));
 
+
+	for (auto tile : this->tiles) {
+		std::cout << "id: " << tile->id<< "\n";
+		std::cout << "canMove: " << tile->canMove << "\n";
+		std::cout << "location: " << tile->position.x << "," << tile->position.y << "\n";
+	} 
 }
 
 void Game::run()

@@ -14,10 +14,10 @@ Tile::Tile()
 Tile::Tile(int id, bool movable, std::string& textureLocation, sf::Vector2f position, sf::Vector2f scale)
 {
 	this->id = id;
+	this->canMove = movable;
 	this->setPosition(position);
 	this->setScale(scale);
 	
-	std::cout << "My Contructor " << this->position.x << "," << this->position.y << "\n";
 
 	this->initSprite(textureLocation);
 	this->initCollider();
@@ -36,7 +36,6 @@ Tile::~Tile()
 
 void Tile::initCollider()
 {
-	std::cout << "Init Collider " << "\n";
 	sf::Vector2f colliderSize = sf::Vector2f(this->tileSprite.getLocalBounds().width, this->tileSprite.getLocalBounds().height);
 
 	this->tileCollider = new Collider(colliderSize, this->position);
@@ -44,7 +43,6 @@ void Tile::initCollider()
 
 bool Tile::initSprite(std::string& textureLocation)
 {
-	std::cout << "Init Sprite " << "\n";
 	if (!this->tileTexture.loadFromFile(textureLocation)) {
 		std::cout << "Tile:: Failed to load texture at location " << textureLocation << "\n";
 		return false;
@@ -61,6 +59,7 @@ bool Tile::initSprite(std::string& textureLocation)
 
 void Tile::update()
 {
+	this->tileSprite.setPosition(this->position);
 	this->tileCollider->update(this->position);
 }
 

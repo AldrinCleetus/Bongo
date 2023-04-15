@@ -9,7 +9,7 @@ class Tile : public Entity
 private:
 	sf::Texture tileTexture;
 
-	bool canMove = false;
+	
 
 
 
@@ -17,6 +17,8 @@ public:
 	int id;
 	Collider* tileCollider;
 	sf::Sprite tileSprite;
+
+	bool canMove;
 
 
 public:
