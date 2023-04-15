@@ -55,7 +55,7 @@ void Player::shoot()
 
 bool Player::loadTextures()
 {
-	if (!this->playerTexture.loadFromFile("Textures/test.png")) {
+	if (!this->playerTexture.loadFromFile("textures/test.png")) {
 		std::cout << "Player::Player texture failed to load" << std::endl;
 		return false;
 	}

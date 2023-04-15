@@ -1,12 +1,18 @@
 #include "Game.h"
 #include <iostream>
 
+std::string TestLocation = "textures/box.png";
+//Tile* test = new Tile(0, false, TestLocation, sf::Vector2f(512.0f, 500.0f), sf::Vector2f(1.0f, 1.0f));
+//Tile* test2 = new Tile(1, false, TestLocation, sf::Vector2f(300.0f, 500.0f), sf::Vector2f(1.0f, 1.0f));
+
+
 Game::Game()
 {
 	this->init();
+	
+	this->tiles.push_back(new Tile(0, false, TestLocation, sf::Vector2f(512.0f, 500.0f), sf::Vector2f(1.0f, 1.0f)));
+	this->tiles.push_back(new Tile(1, false, TestLocation, sf::Vector2f(300.0f, 500.0f), sf::Vector2f(1.0f, 1.0f)));
 
-	// remove later
-	this->testsObjects.push_back(Test_object());
 }
 
 void Game::run()
@@ -24,6 +30,10 @@ Game::~Game()
 {
 	delete this->player;
 	delete this->window;
+
+	for (auto tile : this->tiles) {
+		delete tile;
+	}
 }
 
 void Game::init()
@@ -44,6 +54,13 @@ void Game::update()
 	this->handleInput();
 
 	this->player->update();
+
+
+	/*test.update();*/
+
+	for (auto tile : this->tiles) {
+		(*tile).update();
+	}
 
 	
 	/*if (this->player->playerCollider->isColliding(*this->testsObjects[0].myCollider)) {
@@ -70,7 +87,12 @@ void Game::render()
 	// Update screen
 	this->player->render(*this->window);
 	
-	this->testsObjects[0].render(*this->window);
+	//this->testsObjects[0].render(*this->window);
+	//(*this->tiles[0]).render(*this->window);
+	//test.render(*this->window);
+	for (auto& tile : this->tiles) {
+		(*tile).render(*this->window);
+	}
 
 	// Render
 	this->window->display();

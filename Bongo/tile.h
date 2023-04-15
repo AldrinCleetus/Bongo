@@ -20,6 +20,7 @@ public:
 
 
 public:
+	Tile();
 	Tile(int id, bool movable, std::string& textureLocation, sf::Vector2f position, sf::Vector2f scale);
 	virtual ~Tile();
 

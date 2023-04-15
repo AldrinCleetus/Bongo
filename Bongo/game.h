@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "test_object.h"
 #include <vector>
+#include "tile.h"
 
 class Game
 {
@@ -12,7 +13,7 @@ private:
 	sf::RenderWindow* window;
 	Player* player;
 
-	std::vector<Test_object> testsObjects;
+	std::vector<Tile*> tiles;
 	
 
 	sf::Clock deltaClock;
