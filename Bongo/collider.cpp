@@ -13,7 +13,7 @@ Collider::Collider(sf::Vector2f size, sf::Vector2f position)
 // For debuging
 void Collider::render(sf::RenderTarget& target)
 {
-    this->collider.setFillColor(sf::Color(55, 223, 235, 70));
+    this->collider.setFillColor(sf::Color(240, 0, 0, 70));
     target.draw(this->collider);
 }
 

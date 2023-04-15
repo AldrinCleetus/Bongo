@@ -1,5 +1,6 @@
 #pragma once
 #include "collider.h"
+#include "tile.h"
 #include <SFML/Graphics.hpp>
 
 class Player
@@ -7,6 +8,8 @@ class Player
 private:
 	sf::Sprite playerSprite;
 	sf::Texture playerTexture;
+
+	std::vector<Tile*>* levelTiles;
 
 public:
 	sf::Vector2f position;
@@ -31,7 +34,7 @@ public:
 	float getDirection();
 
 	void aimAtMouse(sf::Vector2i mousePosition);
-
+	void setWorldTiles(std::vector<Tile*>& Tiles);
 
 private:
 

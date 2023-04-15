@@ -11,7 +11,7 @@ Game::Game()
 	this->init();
 	
 	this->tiles.push_back(new Tile(0, false, TestLocation, sf::Vector2f(512.0f, 500.0f), sf::Vector2f(1.0f, 1.0f)));
-	this->tiles.push_back(new Tile(1, false, TestLocation, sf::Vector2f(300.0f, 500.0f), sf::Vector2f(1.0f, 1.0f)));
+	this->tiles.push_back(new Tile(1, true, TestLocation, sf::Vector2f(300.0f, 500.0f), sf::Vector2f(1.0f, 1.0f)));
 
 }
 
@@ -45,6 +45,7 @@ void Game::init()
 
 	// Load in the player
 	this->loadPlayer();
+
 	
 }
 
@@ -145,5 +146,6 @@ void Game::handleGameState()
 void Game::loadPlayer()
 {
 	this->player = new Player();
+	this->player->setWorldTiles(this->tiles);
 }
 

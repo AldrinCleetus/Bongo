@@ -8,7 +8,7 @@ Tile::Tile()
 	this->id = 0;
 	this->initCollider();
 
-	std::cout << "Default Contructor called why??" << "\n";
+	std::cout << "Default Contructor called" << "\n";
 }
 
 Tile::Tile(int id, bool movable, std::string& textureLocation, sf::Vector2f position, sf::Vector2f scale)
@@ -29,15 +29,17 @@ Tile::~Tile()
 	std::cout << "Decontructor called on " << this->id << "\n";
 	//delete this->tileCollider;
 
-	/*if (this->tileCollider != nullptr) {
+	if (this->tileCollider != nullptr) {
 		delete this->tileCollider;
-	}*/
+	}
 }
 
 void Tile::initCollider()
 {
 	std::cout << "Init Collider " << "\n";
-	this->tileCollider = new Collider(this->scale, this->position);
+	sf::Vector2f colliderSize = sf::Vector2f(this->tileSprite.getLocalBounds().width, this->tileSprite.getLocalBounds().height);
+
+	this->tileCollider = new Collider(colliderSize, this->position);
 }
 
 bool Tile::initSprite(std::string& textureLocation)
@@ -52,6 +54,7 @@ bool Tile::initSprite(std::string& textureLocation)
 	this->tileSprite.setScale(this->scale);
 	this->tileSprite.setTexture(this->tileTexture);
 	this->tileSprite.setOrigin(this->tileSprite.getLocalBounds().width / 2.0f , this->tileSprite.getLocalBounds().height / 2.0f);
+		
 	return true;
 
 }
@@ -64,4 +67,6 @@ void Tile::update()
 void Tile::render(sf::RenderTarget& target)
 {
 	target.draw(this->tileSprite);
+	// draw collider - debug
+	this->tileCollider->render(target);
 }

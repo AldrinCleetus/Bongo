@@ -12,11 +12,11 @@ private:
 
 	bool canMove = false;
 
-	Collider* tileCollider;
 
 
 public:
 	int id;
+	Collider* tileCollider;
 
 
 public:

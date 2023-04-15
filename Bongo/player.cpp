@@ -44,6 +44,12 @@ void Player::update()
 void Player::move(sf::Vector2f direction, sf::Time dt)
 {
 
+	for (auto tile : *this->levelTiles) {
+		if (this->playerCollider->isColliding(*tile->tileCollider)) {
+			std::cout << "Collided with " << tile->id << "\n";
+		}
+	}
+
 	direction = Utility::normalizeVector(direction);
 	this->playerSprite.move( (direction * this->movementSpeed) * dt.asSeconds());
 
@@ -65,6 +71,11 @@ bool Player::loadTextures()
 	this->playerSprite.setOrigin(this->playerSprite.getLocalBounds().width / 2, this->playerSprite.getLocalBounds().height / 2);
 	
 	return true;
+}
+
+void Player::setWorldTiles(std::vector<Tile*>& Tiles)
+{
+	this->levelTiles = &Tiles;
 }
 
 void Player::aimAtMouse(sf::Vector2i mousePosition)
