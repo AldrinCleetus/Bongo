@@ -13,6 +13,10 @@ Player::Player()
 Player::~Player()
 {
 	delete this->playerCollider;
+	for (auto bullet : bullets) {
+		delete bullet;
+	}
+
 }
 
 void Player::init()
@@ -21,6 +25,7 @@ void Player::init()
 
 	this->position = sf::Vector2f(0.0f, 0.0f);
 	this->movementSpeed = 100.0f;
+	this->bulletInterval = 0.1f;
 	
 }
 
@@ -28,16 +33,30 @@ void Player::render(sf::RenderTarget& target)
 {
 	target.draw(this->playerSprite);
 	this->playerCollider->render(target); // Debug Purposes
+	
+	for (auto bullet : bullets) {
+		bullet->render(target);
+	}
 }
 
 
-void Player::update()
+void Player::update(sf::Time dt)
 {	
 	/*if (this->playerCollider->collision) {
 		this->playerSprite.move(this->playerCollider->collisionResponseMoveAmount);
 	}*/
 
+	this->lastBulletTime = this->bulletClock.getElapsedTime().asSeconds();
+
+	
+	std::cout << this->lastBulletTime << "\n";
+
+
+
 	this->playerCollider->update(this->playerSprite.getPosition());
+	for (auto bullet : bullets) {
+		bullet->update(dt);
+	}
 
 }
 
@@ -68,6 +87,13 @@ void Player::move(sf::Vector2f direction, sf::Time dt)
 
 void Player::shoot()
 {
+
+	if (this->lastBulletTime > this->bulletInterval) {
+		this->bulletClock.restart();
+		this->bullets.push_back(new Bullet(this->playerSprite.getPosition(), this->aimDirection, sf::Vector2f(1.0f, 1.0f) , this->getDirection()));
+	}
+
+	
 }
 
 bool Player::loadTextures()
@@ -91,9 +117,11 @@ void Player::setWorldTiles(std::vector<Tile*>& Tiles)
 
 void Player::aimAtMouse(sf::Vector2i mousePosition)
 {
+	
 	float dx = mousePosition.x - this->playerSprite.getPosition().x;
 	float dy = mousePosition.y - this->playerSprite.getPosition().y;
 	float rotation = std::atan2(dy, dx) * 180 / 3.14159f;
+	this->aimDirection = sf::Vector2f(dx, dy);
 
 	this->playerSprite.setRotation(rotation);
 

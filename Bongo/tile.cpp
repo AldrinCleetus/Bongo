@@ -27,7 +27,6 @@ Tile::Tile(int id, bool movable, std::string& textureLocation, sf::Vector2f posi
 Tile::~Tile()
 {
 	std::cout << "Decontructor called on " << this->id << "\n";
-	//delete this->tileCollider;
 
 	if (this->tileCollider != nullptr) {
 		delete this->tileCollider;

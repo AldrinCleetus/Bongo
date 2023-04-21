@@ -12,6 +12,12 @@ Entity::~Entity()
 
 void Entity::update()
 {
+
+
+}
+
+void Entity::update(sf::Time dt)
+{
 	
 }
 

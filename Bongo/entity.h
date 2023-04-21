@@ -6,7 +6,9 @@ class Entity
 {
 public:
 	sf::Vector2f position;
+	sf::Vector2f direction;
 	sf::Vector2f scale;
+
 
 
 public:
@@ -14,6 +16,7 @@ public:
 	virtual ~Entity();
 
 	virtual void update();
+	virtual void update(sf::Time dt);
 	virtual void render(sf::RenderTarget& target);
 	
 	void move(sf::Vector2f movePosition);
